@@ -2,15 +2,17 @@
 import Link from "next/link";
 import { observer } from "mobx-react-lite";
 import { useMainStore } from "@/app/Context/MainStoreProvider";
+import { PostList } from "./PostList";
 
-export const Intro = observer(() => {
+export const Main = observer(() => {
   const S = useMainStore();
 
   return (
     <div className="container">
       <h1 className='header'>Next 13 Blog</h1>
-      <span>Today is {S?.date}</span>
-      <Link className="link" href={"/posts"}>Findout posts</Link>
+      <div>Today is {S?.date}</div>
+      <h3 className="header">Posts:</h3>
+      <PostList />
     </div>
   );
 });

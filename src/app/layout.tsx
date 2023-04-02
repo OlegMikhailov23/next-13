@@ -1,5 +1,5 @@
+import dayjs from "dayjs";
 import { MainStoreProvider } from "./Context/MainStoreProvider";
-import Posts from "./posts/page";
 
 export const metadata = {
   title: 'Home page blog',
@@ -21,7 +21,7 @@ export const metadata = {
 }
 
 async function getInitData() {
-  const res = await fetch('http://localhost:4000/posts', {method: 'GET'});
+  const res = await fetch('http://localhost:4000/posts', { method: 'GET', cache: 'no-store'});
   const headerRes = await fetch('http://localhost:4000/markup/header');
 
   if (!res.ok) {
@@ -35,7 +35,7 @@ async function getInitData() {
     header,
     initialStateStore: {
       posts,
-      date: new Date().toString(),
+      date: dayjs(new Date()).format('dddd DD MMMM YYYY'),
     }
   };
 }

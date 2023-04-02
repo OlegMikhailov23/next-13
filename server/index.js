@@ -14,10 +14,20 @@ app.get('/posts', (req, res) => {
 
 app.post('/posts', (req, res) => {
   const id = randomBytes(4).toString('hex');
-  const {title} = req.body;
-  posts[id] = {id, title};
+  const {title, content} = req.body;
+  const preview = content.split(' ').slice(0,5).join(' ');
+  const date = new Date();
+  posts[id] = {id, title, content, preview, date};
   posts.push(posts[id]);
   res.status(201).send(posts[id]);
+})
+
+app.get('/posts/:id', (req, res) => {
+  const post = posts.find(p => p.id === req.params.id);
+  if (!post) {
+    res.status(404).send("Post does not exist!");
+  }
+  res.status(200).send(post);
 })
 
 app.get('/markup/header', (req, res) => {
@@ -30,9 +40,6 @@ app.get('/markup/header', (req, res) => {
           <ul style="display: flex; align-items: center; width: 100%; margin-bottom: 0">
             <li style="display: block; width: 60px; color: #ffffff">
               <a style="color: #ffffff; font-size: 1rem" href="/">Home</a>
-            </li>
-            <li style="display: block; width: 60px; color: #ffffff">
-              <a style="color: #ffffff; font-size: 1rem" href="/posts">Posts</a>
             </li>
           </ul>
       </nav>
