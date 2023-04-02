@@ -11,7 +11,6 @@ export const Intro = observer(() => {
       <h1 className='header'>Next 13 Blog</h1>
       <span>Today is {S?.date}</span>
       <Link className="link" href={"/posts"}>Findout posts</Link>
-
     </div>
   );
 });
