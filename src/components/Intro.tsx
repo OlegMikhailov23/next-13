@@ -10,7 +10,8 @@ export const Intro = observer(() => {
     <div className="container">
       <h1 className='header'>Next 13 Blog</h1>
       <span>Today is {S?.date}</span>
-      <Link className="link" href={"/posts"}>Finout posts</Link>
+      <Link className="link" href={"/posts"}>Findout posts</Link>
+
     </div>
   );
 });

@@ -29,10 +29,10 @@ app.get('/markup/header', (req, res) => {
         </a>
           <ul style="display: flex; align-items: center; width: 100%; margin-bottom: 0">
             <li style="display: block; width: 60px; color: #ffffff">
-              <a style="color: #ffffff; font-size: 1rem" href="/posts">Posts</a>
+              <a style="color: #ffffff; font-size: 1rem" href="/">Home</a>
             </li>
             <li style="display: block; width: 60px; color: #ffffff">
-              <a style="color: #ffffff; font-size: 1rem" href="/">Home</a>
+              <a style="color: #ffffff; font-size: 1rem" href="/posts">Posts</a>
             </li>
           </ul>
       </nav>
