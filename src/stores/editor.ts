@@ -25,7 +25,7 @@ export class Editor {
 
   async sendPost(): Promise<void> {
     try {
-      await axios.post('//localhost:4000/posts/ergrg', {title: this.title, content: this.content});
+      await axios.post('//localhost:4000/posts', {title: this.title, content: this.content});
       this.root.ui.setShowToast(MessageType.success, 'Post successfully send!');
     } catch(e) {
       console.error('Send post method has felt!', e)
