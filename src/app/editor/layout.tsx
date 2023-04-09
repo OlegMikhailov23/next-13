@@ -1,3 +1,7 @@
+export const metadata = {
+  title: 'Editor Page',
+}
+
 const EditorLayout = ({
   children,
 }: {

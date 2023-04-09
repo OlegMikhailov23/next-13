@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  width: 200px;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #ffffff;
+}
+
+.warning {
+  background-color: #f5f785;
+}
+
+.error {
+  background-color: #ee2323;
+}
+
+.info {
+  background-color: #39cff1;
+} 
+
+.success {
+  background-color: #39f14b;
+} 

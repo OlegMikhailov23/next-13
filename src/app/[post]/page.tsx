@@ -22,7 +22,6 @@ export const metadata = {
 }
 
 const getPostData = async (id: string): Promise<PostItem> => {
-  console.log(id, 'HERE')
   const res = await fetch(`http://localhost:4000/posts/${id}`, { method: 'GET' });
 
   if (!res.ok) {
@@ -37,10 +36,11 @@ const getPostData = async (id: string): Promise<PostItem> => {
 type Props = {
   params: {
     post: string;
-  };
+  }
 }
 
 const Post = async(props: Props) => {
+  
   const p = await getPostData(props.params.post);
   return(
     <>

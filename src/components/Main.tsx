@@ -11,6 +11,7 @@ export const Main = observer(() => {
     <div className="container">
       <h1 className='header'>Next 13 Blog</h1>
       <div>Today is {S?.date}</div>
+      <Link href={'/editor'} className="btn btn-primary" style={{position: 'fixed', top: '4rem', right: '2rem', borderRadius: '50%'}} title="add post">+</Link>
       <h3 className="header">Posts:</h3>
       <PostList />
     </div>

@@ -1,6 +1,7 @@
 import { Post } from "@/types/common";
-import axios from "axios";
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable } from "mobx";
+import { Ui } from "./ui";
+import { Editor } from "./editor";
 
 export type MainStoreHidration = { posts: Post[], date: string }
 
@@ -10,8 +11,22 @@ export class MainStore {
 
   date!: string;
 
+  _ui!: Ui;
+
+  _editor!: Editor;
+
   constructor() {
     makeAutoObservable(this);
+    this._ui = new Ui(this);
+    this._editor = new Editor(this);
+  }
+
+  get ui() {
+    return this._ui;
+  }
+
+  get editor() {
+    return this._editor;
   }
 
   hydrate(data: MainStoreHidration) {
