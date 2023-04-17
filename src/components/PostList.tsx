@@ -1,9 +1,8 @@
 "use client";
-import { useMainStore } from "@/app/Context/MainStoreProvider";
-import { observer } from "mobx-react";
+import { useMainStore } from "@/stores";
 import Link from "next/link";
 
-export const PostList = observer(() => {
+export const PostList = () => {
   const S = useMainStore();
 
   return(
@@ -24,4 +23,4 @@ export const PostList = observer(() => {
       </div>
     </div>
   )
-})
+}

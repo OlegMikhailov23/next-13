@@ -1,19 +1,20 @@
 'use client';
 
-import { useMainStore } from "@/app/Context/MainStoreProvider";
-import { observer } from "mobx-react-lite";
+import { useMainStore } from '@/stores';
+import { useEditorStore } from '@/stores/editor';
+import { useUiStore } from '@/stores/ui';
 import { useRouter } from 'next/navigation'
 import { Toast } from "./Toast/Toast";
 
 
-export const DeleteBtn = observer(({ id }: { id: string }) => {
-  const S = useMainStore();
-  const Ui = useMainStore()!.ui;
+export const DeleteBtn = ({ id }: { id: string }) => {
+  const Ui = useUiStore();
+  const E = useEditorStore();
 
   const history = useRouter();
 
   const deleteHandle = () => {
-    S?.editor.deletePost(id);
+    E.deletePost(id);
     setTimeout(() => {
       history.push('/')
     }, 600);
@@ -24,4 +25,4 @@ export const DeleteBtn = observer(({ id }: { id: string }) => {
       <button onClick={deleteHandle} className="btn btn-danger" style={{ marginTop: 20, marginBottom: 20, marginLeft: 16 }}>Delete</button>
     </>
   );
-});
+};

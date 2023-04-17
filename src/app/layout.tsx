@@ -1,5 +1,6 @@
+import { useMainStore } from "@/stores";
+import StoreInitializer from "@/stores/StoreInitalizer";
 import dayjs from "dayjs";
-import { MainStoreProvider } from "./Context/MainStoreProvider";
 
 export const metadata = {
   title: 'Home page blog',
@@ -46,7 +47,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const initData = await getInitData()
+  const initData = await getInitData();
+
+  useMainStore.setState({posts: initData.initialStateStore.posts, date: initData.initialStateStore.date});
 
   return (
     <html lang="ru">
@@ -57,15 +60,14 @@ export default async function RootLayout({
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossOrigin="anonymous"
         />
-        {/* <link rel="icon" href="public/favicon.ico" />
-        <link rel="icon" href="public/shortcut-icon.png" /> */}
+        <link rel="icon" href="public/favicon.ico" />
+        <link rel="icon" href="public/shortcut-icon.png" />
       </head>
       <body>
         <>
+          <StoreInitializer posts={initData.initialStateStore.posts} date={initData.initialStateStore.date} />
           <div dangerouslySetInnerHTML={{ __html: initData.header }} />
-          <MainStoreProvider hydrationData={initData.initialStateStore}>
-            {children}
-          </MainStoreProvider>
+          {children}
         </>
       </body>
     </html>

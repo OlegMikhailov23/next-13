@@ -1,7 +1,7 @@
 "use client";
 import { Toast } from "@/components/Toast/Toast";
-import { observer } from "mobx-react-lite";
-import { useMainStore } from "../Context/MainStoreProvider";
+import { useEditorStore } from "@/stores/editor";
+import { useUiStore } from "@/stores/ui";
 import { useRouter } from 'next/navigation'
 import { FormEvent, useEffect } from "react";
 
@@ -11,10 +11,10 @@ type EditorParams = {
   };
 }
 
-const Editor = observer(({ searchParams }: EditorParams) => {
+const Editor = ({ searchParams }: EditorParams) => {
   const { post } = searchParams;
-  const S = useMainStore()!.editor;
-  const Ui = useMainStore()!.ui;
+  const S = useEditorStore();
+  const Ui = useUiStore();
   const history = useRouter();
   const isDisabled = !!S.content && !!S.title
 
@@ -61,6 +61,6 @@ const Editor = observer(({ searchParams }: EditorParams) => {
       <Toast isShown={Ui.shouldToastShow} message={Ui.message} type={Ui.type} />
     </div>
   )
-})
+}
 
 export default Editor;
