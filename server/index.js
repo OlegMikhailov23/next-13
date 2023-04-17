@@ -6,7 +6,7 @@ const {randomBytes} = require('crypto');
 
 app.use(bodyParser.json());
 app.use(cors());
-const posts = [];
+let posts = [];
 
 app.get('/posts', (req, res) => {
   res.send(posts);
@@ -29,6 +29,37 @@ app.get('/posts/:id', (req, res) => {
   }
   res.status(200).send(post);
 })
+
+app.put("/posts/:id", (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.body;
+  posts = posts.map((post) =>
+    post.id === id
+      ? {
+          id,
+          title,
+          content,
+          preview: content.split(" ").slice(0, 5).join(" "),
+          date: new Date(),
+        }
+      : post
+  );
+
+  content.split(" ").slice(0, 5).join(" ");
+
+  const updatedPost = posts.find((post) => post.id === id);
+  if (!updatedPost) {
+    res.status(404).send("Post does not exist!");
+  }
+
+  res.status(200).send(updatedPost);
+});
+
+app.delete("/posts/:id", (req, res) => {
+  const { id } = req.params;
+  posts = posts.filter(post => post.id !== id);
+  res.send(`Post ${id} has been deleted!`);
+});
 
 app.get('/markup/header', (req, res) => {
   res.status(200).send(

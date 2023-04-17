@@ -1,13 +1,14 @@
-import { Post } from "@/types/common";
+import { PostType } from "@/types/common";
 import { makeAutoObservable } from "mobx";
 import { Ui } from "./ui";
 import { Editor } from "./editor";
+import axios from "axios";
 
-export type MainStoreHidration = { posts: Post[], date: string }
+export type MainStoreHidration = { posts: PostType[], date: string }
 
 
 export class MainStore {
-  posts: Post[] = [];
+  posts: PostType[] = [];
 
   date!: string;
 
@@ -27,6 +28,14 @@ export class MainStore {
 
   get editor() {
     return this._editor;
+  }
+
+  async loadPosts(): Promise<void> {
+    try {
+      this.posts = await (await axios.get("http://localhost:4000/posts")).data;
+    } catch (e) {
+      console.error("Error loading posts", e);
+    }
   }
 
   hydrate(data: MainStoreHidration) {

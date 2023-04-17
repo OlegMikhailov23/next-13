@@ -5,8 +5,8 @@ export const metadata = {
   title: 'Home page blog',
   description: 'Wright here your post',
   icons: {
-    icon: '/icon.png',
-    shortcut: '/shortcut-icon.png',
+    icon: 'icon.png',
+    shortcut: 'shortcut-icon.png',
     apple: '/apple-icon.png',
     other: {
       rel: 'apple-touch-icon-precomposed',
@@ -57,6 +57,8 @@ export default async function RootLayout({
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossOrigin="anonymous"
         />
+        {/* <link rel="icon" href="public/favicon.ico" />
+        <link rel="icon" href="public/shortcut-icon.png" /> */}
       </head>
       <body>
         <>
